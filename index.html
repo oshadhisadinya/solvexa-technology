@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Solvexa Technology | Smart Software Solutions</title>
     
-    <!-- Bootstrap 5 CSS (CDN) -->
+    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,29 +13,44 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        /* Custom Styles */
-        body { font-family: 'Poppins', sans-serif; }
+        /* Custom Elegant Styles */
+        body { font-family: 'Poppins', sans-serif; color: #333; }
         
+        /* Navbar */
         .navbar-brand img { height: 40px; margin-right: 10px; }
-        .hero-section {
-            background: #f8f9fa;
-            padding: 100px 0;
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-        }
-        .service-card {
-            border: none;
-            transition: transform 0.3s ease;
-            height: 100%;
-        }
-        .service-card:hover { transform: translateY(-5px); }
-        .service-icon { font-size: 2.5rem; color: #0d6efd; margin-bottom: 15px; }
+        .nav-link { font-weight: 500; transition: 0.3s; }
+        .nav-link:hover { color: #0d6efd !important; }
         
-        /* Fix Button Styles */
-        .btn-outline-primary {
-            border-width: 2px;
-            font-weight: 600;
+        /* Hero Carousel */
+        .carousel-item { height: 80vh; min-height: 500px; background-size: cover; background-position: center; position: relative; }
+        .carousel-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; align-items: center; justify-content: center; }
+        .hero-text { color: white; text-align: center; max-width: 800px; padding: 20px; }
+        .hero-text h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 20px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        .hero-text p { font-size: 1.2rem; margin-bottom: 30px; opacity: 0.9; }
+        
+        /* Service Cards with Images */
+        .service-card { border: none; border-radius: 15px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; height: 100%; background: white; }
+        .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+        .service-card img { height: 200px; object-fit: cover; width: 100%; }
+        .service-card .card-body { padding: 25px; }
+        .service-icon { font-size: 2rem; color: #0d6efd; margin-bottom: 15px; }
+        
+        /* About Section */
+        .about-section { background: #f8f9fa; }
+        .feature-box { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        
+        /* Contact Section */
+        .contact-section { background: #0A1929; color: white; }
+        .form-control { border-radius: 8px; padding: 12px; border: none; }
+        .btn-primary-custom { background: #0066FF; border: none; padding: 12px 30px; border-radius: 8px; font-weight: 600; transition: 0.3s; }
+        .btn-primary-custom:hover { background: #0052cc; transform: translateY(-2px); }
+        
+        /* Footer */
+        footer { background: #000; color: #888; padding: 20px 0; font-size: 0.9rem; }
+        
+        @media (max-width: 768px) {
+            .hero-text h1 { font-size: 2rem; }
+            .carousel-item { height: 60vh; }
         }
     </style>
 </head>
@@ -45,7 +60,6 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#">
-                <!-- Logo එකේ නම හරියටම දෙන්න -->
                 <img src="Logo2.png" alt="Solvexa Logo"> 
                 Solvexa Technology
             </a>
@@ -54,60 +68,111 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="#about">About</a></li>
                     <li class="nav-item ms-lg-3">
-                        <a class="btn btn-primary px-4" href="#contact">Contact Us</a>
+                        <a class="btn btn-primary px-4 rounded-pill" href="#contact">Contact Us</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-section text-center">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <h1 class="display-4 fw-bold mb-4">Smart Solutions.<br>Secure Systems.</h1>
-                    <p class="lead text-muted mb-5">We build custom web & mobile applications to help your business grow. Founded by Software Engineering experts.</p>
-                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                        <a href="#contact" class="btn btn-primary btn-lg px-4 me-sm-3">Get a Free Quote</a>
-                        <a href="#services" class="btn btn-outline-primary btn-lg px-4">View Services</a>
+    <!-- Hero Carousel -->
+    <section id="home">
+        <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+            </div>
+            <div class="carousel-inner">
+                <!-- Slide 1 -->
+                <div class="carousel-item active" style="background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
+                    <div class="carousel-overlay">
+                        <div class="hero-text">
+                            <h1>Smart Solutions.<br>Secure Systems.</h1>
+                            <p>We build custom web & mobile applications to help your business grow.</p>
+                            <a href="#contact" class="btn btn-primary-custom btn-lg me-3">Get a Free Quote</a>
+                            <a href="#services" class="btn btn-outline-light btn-lg">View Services</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
+                    <div class="carousel-overlay">
+                        <div class="hero-text">
+                            <h1>Data-Driven Decisions</h1>
+                            <p>Transform your business with intelligent dashboards and analytics.</p>
+                            <a href="#contact" class="btn btn-primary-custom btn-lg">Start Your Project</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="carousel-item" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');">
+                    <div class="carousel-overlay">
+                        <div class="hero-text">
+                            <h1>Expert Team</h1>
+                            <p>Founded by Software Engineering experts dedicated to quality.</p>
+                            <a href="#about" class="btn btn-primary-custom btn-lg">Learn More</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-5 bg-white">
+    <!-- Services Section (4 Cards with Images) -->
+    <section id="services" class="py-5 bg-light">
         <div class="container py-5">
             <div class="text-center mb-5">
-                <h2 class="fw-bold">Our Services</h2>
-                <p class="text-muted">Professional software solutions tailored for your needs</p>
+                <h2 class="fw-bold display-5">Our Services</h2>
+                <p class="text-muted lead">Comprehensive technology solutions for modern businesses</p>
             </div>
             <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card service-card p-4 text-center shadow-sm">
-                        <i class="fas fa-laptop-code service-icon"></i>
-                        <h4 class="fw-bold">Web Applications</h4>
-                        <p class="text-muted small">Custom dashboards, management systems, and secure RBAC solutions using React & Node.js.</p>
+                <!-- Card 1 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card service-card shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Web Dev">
+                        <div class="card-body text-center">
+                            <i class="fas fa-laptop-code service-icon"></i>
+                            <h5 class="fw-bold">Web Applications</h5>
+                            <p class="small text-muted">Custom dashboards, management systems, and secure RBAC solutions using React & Node.js.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card service-card p-4 text-center shadow-sm">
-                        <i class="fas fa-mobile-alt service-icon"></i>
-                        <h4 class="fw-bold">Mobile Apps</h4>
-                        <p class="text-muted small">Cross-platform mobile applications for iOS and Android using Flutter or React Native.</p>
+                <!-- Card 2 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card service-card shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Mobile Apps">
+                        <div class="card-body text-center">
+                            <i class="fas fa-mobile-alt service-icon"></i>
+                            <h5 class="fw-bold">Mobile Apps</h5>
+                            <p class="small text-muted">Cross-platform mobile applications for iOS and Android using Flutter or React Native.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card service-card p-4 text-center shadow-sm">
-                        <i class="fas fa-bug service-icon"></i>
-                        <h4 class="fw-bold">QA & Testing</h4>
-                        <p class="text-muted small">Professional bug hunting, manual testing, and quality assurance reports for your software.</p>
+                <!-- Card 3 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card service-card shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="QA Testing">
+                        <div class="card-body text-center">
+                            <i class="fas fa-bug service-icon"></i>
+                            <h5 class="fw-bold">QA & Testing</h5>
+                            <p class="small text-muted">Professional bug hunting, manual testing, and quality assurance reports for your software.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Card 4 (NEW) -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="card service-card shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="AI Integration">
+                        <div class="card-body text-center">
+                            <i class="fas fa-robot service-icon"></i>
+                            <h5 class="fw-bold">AI Integration</h5>
+                            <p class="small text-muted">Smart automation, chatbots, and data processing to elevate your business efficiency.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -115,18 +180,33 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-5 bg-light">
+    <section id="about" class="about-section py-5">
         <div class="container py-5">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0">
-                    <h2 class="fw-bold mb-4">About Solvexa Technology</h2>
-                    <p class="lead">We are a startup focused on delivering high-quality, secure, and scalable software solutions.</p>
+                    <h2 class="fw-bold mb-4 display-6">About Solvexa Technology</h2>
+                    <p class="lead text-muted">We are a startup focused on delivering high-quality, secure, and scalable software solutions.</p>
                     <p class="text-muted">Specializing in Role-Based Access Control (RBAC) systems and modern tech stacks. Our mission is to make professional software accessible to local businesses at affordable prices.</p>
+                    <div class="mt-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle text-primary fs-4 me-3"></i>
+                            <span class="fw-bold">Student-friendly Pricing</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle text-primary fs-4 me-3"></i>
+                            <span class="fw-bold">Transparent Communication</span>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <i class="fas fa-check-circle text-primary fs-4 me-3"></i>
+                            <span class="fw-bold">Quality Assurance Guaranteed</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="bg-white p-4 rounded shadow-sm border-start border-4 border-primary">
-                        <h5 class="fw-bold text-primary">Why Choose Us?</h5>
-                        <p class="mb-0 small text-muted">As Software Engineering undergraduates, we bring the latest academic knowledge and fresh perspectives to solve real-world business problems efficiently.</p>
+                    <div class="feature-box text-center">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="img-fluid rounded mb-4" alt="Team">
+                        <h4 class="fw-bold text-primary">Why Choose Us?</h4>
+                        <p class="text-muted">As Software Engineering undergraduates, we bring the latest academic knowledge and fresh perspectives to solve real-world business problems efficiently.</p>
                     </div>
                 </div>
             </div>
@@ -134,31 +214,32 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-5 bg-dark text-white">
+    <section id="contact" class="contact-section py-5">
         <div class="container py-5">
             <div class="text-center mb-5">
-                <h2 class="fw-bold">Let's Build Something Great</h2>
-                <p class="text-white-50">Ready to digitize your business? Contact us today.</p>
+                <h2 class="fw-bold display-5">Let's Build Something Great</h2>
+                <p class="text-white-50 lead">Ready to digitize your business? Contact us today.</p>
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-6">
-                    <form class="bg-white p-4 rounded text-dark shadow">
+                    <form class="bg-white p-4 p-md-5 rounded-4 shadow text-dark">
                         <div class="mb-3">
                             <label class="form-label fw-bold">Your Name</label>
-                            <input type="text" class="form-control" placeholder="John Doe" required>
+                            <input type="text" class="form-control bg-light" placeholder="John Doe" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-bold">Email Address</label>
-                            <input type="email" class="form-control" placeholder="name@example.com" required>
+                            <input type="email" class="form-control bg-light" placeholder="name@example.com" required>
                         </div>
-                        <div class="mb-3">
+                        <div class="mb-4">
                             <label class="form-label fw-bold">Message</label>
-                            <textarea class="form-control" rows="4" placeholder="How can we help you?" required></textarea>
+                            <textarea class="form-control bg-light" rows="4" placeholder="How can we help you?" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100 fw-bold">Send Message</button>
+                        <button type="submit" class="btn btn-primary-custom w-100 py-3">Send Message</button>
                     </form>
                     <div class="text-center mt-4 text-white-50">
-                        <small><i class="fas fa-envelope me-2"></i> solvexa.technology@gmail.com</small>
+                        <p class="mb-1"><i class="fas fa-envelope me-2"></i> solvexa.technology@gmail.com</p>
+                        <p><i class="fab fa-whatsapp me-2"></i> +94 XX XXX XXXX</p>
                     </div>
                 </div>
             </div>
@@ -166,13 +247,13 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-black text-white text-center py-3">
+    <footer class="text-center">
         <div class="container">
-            <p class="mb-0 small">&copy; 2026 Solvexa Technology. All Rights Reserved.</p>
+            <p class="mb-0">&copy; 2026 Solvexa Technology. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- Bootstrap JS Bundle (Required for Navbar Toggle) -->
+    <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
